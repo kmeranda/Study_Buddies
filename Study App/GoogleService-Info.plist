@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>288513739165-96v22p44uufrvchun0dj8bgl45djigm3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.288513739165-96v22p44uufrvchun0dj8bgl45djigm3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC4o6tvuvmvxsa80Q9HQxDyZ3p9E6k6f9c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>288513739165</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kmeranda.Study-App</string>
+	<key>PROJECT_ID</key>
+	<string>study-buddies-ab354</string>
+	<key>STORAGE_BUCKET</key>
+	<string>study-buddies-ab354.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:288513739165:ios:c85f169d0e162064</string>
+	<key>DATABASE_URL</key>
+	<string>https://study-buddies-ab354.firebaseio.com</string>
+</dict>
+</plist>
