@@ -13,6 +13,7 @@
 		5882B3CF1E6FD77000D7C1C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5882B3CE1E6FD77000D7C1C3 /* Assets.xcassets */; };
 		5882B3D21E6FD77000D7C1C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5882B3D01E6FD77000D7C1C3 /* LaunchScreen.storyboard */; };
 		5882B3DA1E6FDC9000D7C1C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5882B3D91E6FDC9000D7C1C3 /* GoogleService-Info.plist */; };
+		5882B3E01E70AB9B00D7C1C3 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5882B3DF1E70AB9B00D7C1C3 /* CreateAccountViewController.swift */; };
 		876DC0F82794D3B6F1850007 /* Pods_Study_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8675F6587C0ED3E6BC7CE345 /* Pods_Study_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		5882B3D11E6FD77000D7C1C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5882B3D31E6FD77000D7C1C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5882B3D91E6FDC9000D7C1C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5882B3DF1E70AB9B00D7C1C3 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		8675F6587C0ED3E6BC7CE345 /* Pods_Study_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Study_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21A755503DB099CC4ED4D37 /* Pods-Study App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Study App/Pods-Study App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				5882B3C71E6FD77000D7C1C3 /* AppDelegate.swift */,
+				5882B3DF1E70AB9B00D7C1C3 /* CreateAccountViewController.swift */,
 				5882B3C91E6FD77000D7C1C3 /* ViewController.swift */,
 				5882B3CB1E6FD77000D7C1C3 /* Main.storyboard */,
 				5882B3CE1E6FD77000D7C1C3 /* Assets.xcassets */,
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5882B3E01E70AB9B00D7C1C3 /* CreateAccountViewController.swift in Sources */,
 				5882B3CA1E6FD77000D7C1C3 /* ViewController.swift in Sources */,
 				5882B3C81E6FD77000D7C1C3 /* AppDelegate.swift in Sources */,
 			);
@@ -383,6 +387,7 @@
 				5882B3D81E6FD77000D7C1C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
