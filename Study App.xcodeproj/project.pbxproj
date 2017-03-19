@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5852E5CD1E735AEF0042CACE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5852E5CC1E735AEF0042CACE /* ProfileViewController.swift */; };
 		5882B3C81E6FD77000D7C1C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5882B3C71E6FD77000D7C1C3 /* AppDelegate.swift */; };
 		5882B3CA1E6FD77000D7C1C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5882B3C91E6FD77000D7C1C3 /* ViewController.swift */; };
 		5882B3CD1E6FD77000D7C1C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5882B3CB1E6FD77000D7C1C3 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		0AFE18EF444D5E6179C42004 /* Pods-Study App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Study App/Pods-Study App.debug.xcconfig"; sourceTree = "<group>"; };
+		5852E5CC1E735AEF0042CACE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5882B3C41E6FD77000D7C1C3 /* Study App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Study App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5882B3C71E6FD77000D7C1C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5882B3C91E6FD77000D7C1C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		5882B3C61E6FD77000D7C1C3 /* Study App */ = {
 			isa = PBXGroup;
 			children = (
+				5852E5CC1E735AEF0042CACE /* ProfileViewController.swift */,
 				5882B3C71E6FD77000D7C1C3 /* AppDelegate.swift */,
 				5882B3DF1E70AB9B00D7C1C3 /* CreateAccountViewController.swift */,
 				5882B3C91E6FD77000D7C1C3 /* ViewController.swift */,
@@ -221,6 +224,7 @@
 			files = (
 				5882B3E01E70AB9B00D7C1C3 /* CreateAccountViewController.swift in Sources */,
 				5882B3CA1E6FD77000D7C1C3 /* ViewController.swift in Sources */,
+				5852E5CD1E735AEF0042CACE /* ProfileViewController.swift in Sources */,
 				5882B3C81E6FD77000D7C1C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

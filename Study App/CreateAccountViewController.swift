@@ -37,6 +37,11 @@ class CreateAccountViewController: UIViewController {
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
             
+        } else if self.passwordField.text != self.passwordConfirmationField.text {
+            let alertController = UIAlertController(title: "Oops!", message: "Passwords do not match. Please check that you entered them correctly.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
         } else {
             
             FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.passwordField.text!, completion: {(user, error) in

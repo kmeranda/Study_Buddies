@@ -6,7 +6,9 @@ target 'Study App' do
   use_frameworks!
 
   # Pods for Study App
+  pod 'Firebase'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
   pod 'Firebase/Auth'
 
 end
