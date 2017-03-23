@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         let user = FIRAuth.auth()?.currentUser
-        /*var ref: FIRDatabaseReference!
+        var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         let userID = user?.uid
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController {
             if let user = FIRAuth.auth()?.currentUser { // user already logged in
                 self.performSegue(withIdentifier: "LoggingOut", sender: user)
             }
-        }*/
+        }
         
         
         let alertController = UIAlertController(title: "User Info", message: user?.uid, preferredStyle: .alert)

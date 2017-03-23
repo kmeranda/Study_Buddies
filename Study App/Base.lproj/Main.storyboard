@@ -192,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Val-n5-aDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1430" y="139"/>
+            <point key="canvasLocation" x="1190" y="139"/>
         </scene>
         <!--ProfileView-->
         <scene sceneID="wkV-WF-BjI">
@@ -339,7 +339,7 @@
                         <outlet property="profDisplayName" destination="6pj-Ca-Bce" id="1DO-II-b1t"/>
                         <outlet property="profGradYear" destination="362-xH-byu" id="sw4-Kx-ao9"/>
                         <outlet property="profImage" destination="sRC-Ef-Bxb" id="Hxz-ES-bjr"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="SigningOut" id="1Gu-V2-BYH"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="SigningOut" modalPresentationStyle="overCurrentContext" id="1Gu-V2-BYH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pjc-pC-Wzw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -366,7 +366,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="i10-xY-JqJ"/>
         <segue reference="1Gu-V2-BYH"/>
+        <segue reference="1UL-7e-cbm"/>
     </inferredMetricsTieBreakers>
 </document>
