@@ -15,18 +15,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profDisplayName: UILabel!
     @IBOutlet weak var profGradYear: UILabel!
     @IBOutlet weak var profClasses: UILabel!
-    @IBOutlet weak var menuLeading: NSLayoutConstraint!
-    @IBOutlet weak var menuView: UIView!
-    var menuShowing = false
+    @IBOutlet weak var openMenu: UIBarButtonItem!
     
-    @IBAction func signOutAction(_ sender: Any) {
+    /*@IBAction func signOutAction(_ sender: Any) {
         try! FIRAuth.auth()?.signOut()
         self.performSegue(withIdentifier: "SigningOut", sender: nil)
-    }
+    }*/
     
     override func viewDidLoad() {
-        self.menuLeading.constant = -213    // extra 3 for dropshadow
-        self.menuView.layer.shadowOpacity = 1.0
+        openMenu.target = self.revealViewController()
+        openMenu.action = Selector("revealToggle:")
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        //self.menuLeading.constant = -213    // extra 3 for dropshadow
+        //self.menuView.layer.shadowOpacity = 1.0
         super.viewDidLoad()
         
         let user = FIRAuth.auth()?.currentUser
@@ -56,13 +57,7 @@ class ProfileViewController: UIViewController {
                 self.performSegue(withIdentifier: "LoggingOut", sender: user)
             }
         }
-        
-        
-        let alertController = UIAlertController(title: "User Info", message: user?.uid, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +66,7 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func openMenu(_ sender: Any) {
-        if menuShowing {
+        /*if menuShowing {
             self.menuLeading.constant = -213 // extra 3 for the dropshadow
             UIView.animate(withDuration: 0.3,
                            animations: {
@@ -85,6 +80,7 @@ class ProfileViewController: UIViewController {
                 
             })
         }
-        menuShowing = !menuShowing
+        menuShowing = !menuShowing*/
+        print("open menu")
     }
 }
