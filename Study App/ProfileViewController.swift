@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         openMenu.target = self.revealViewController()
-        openMenu.action = Selector("revealToggle:")
+        openMenu.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         //self.menuLeading.constant = -213    // extra 3 for dropshadow
         //self.menuView.layer.shadowOpacity = 1.0

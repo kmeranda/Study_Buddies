@@ -1,14 +1,14 @@
 //
-//  SearchViewController.swift
+//  MapViewController.swift
 //  Study App
 //
-//  Created by Kelsey Meranda on 3/25/17.
+//  Created by Kelsey Meranda on 3/29/17.
 //  Copyright © 2017 Kelsey Meranda. All rights reserved.
 //
 
 import Foundation
 
-class SearchViewController : UIViewController {
+class MapViewController : UIViewController {
     
     @IBOutlet weak var openMenu: UIBarButtonItem!
     
