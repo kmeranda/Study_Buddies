@@ -46,6 +46,15 @@ class CreateAccountViewController: UIViewController {
             
             FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.passwordField.text!, completion: {(user, error) in
                 if error == nil {
+                    var ref: FIRDatabaseReference!
+                    
+                    ref = FIRDatabase.database().reference()
+                    let uid = user?.uid
+                ref.child("users").child(uid!).child("class_name").setValue(self.classNameField.text!)
+                ref.child("users").child(uid!).child("display_name").setValue(self.usernameField.text!)
+                    ref.child("users").child(uid!).child("email").setValue(self.emailField.text!)
+                ref.child("users").child(uid!).child("grad_year").setValue(self.gradYearField.text!)
+
                     self.performSegue(withIdentifier: "LoggingIn", sender: nil)
                 } else {
                     let alertController = UIAlertController(title: "Oops!", message: error?.localizedDescription, preferredStyle: .alert)

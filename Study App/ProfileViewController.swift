@@ -13,8 +13,12 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profImage: UIImageView!
     @IBOutlet weak var profDisplayName: UILabel!
+    @IBOutlet weak var profDisplayNameField: UITextField!
     @IBOutlet weak var profGradYear: UILabel!
+    @IBOutlet weak var profGradYearField: UITextField!
     @IBOutlet weak var profClasses: UILabel!
+    @IBOutlet weak var profClassesField: UITextField!
+    @IBOutlet weak var saveData: UIButton!
     @IBOutlet weak var openMenu: UIBarButtonItem!
     
     /*@IBAction func signOutAction(_ sender: Any) {
@@ -23,6 +27,12 @@ class ProfileViewController: UIViewController {
     }*/
     
     override func viewDidLoad() {
+        
+        self.profDisplayNameField.isHidden = true
+        self.profGradYearField.isHidden  = true
+        self.profClassesField.isHidden = true
+        self.saveData.isHidden = true
+        
         openMenu.target = self.revealViewController()
         openMenu.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -64,23 +74,55 @@ class ProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func editProfile(_ sender: UIBarButtonItem) {
+        // set text of text field
+        self.profDisplayNameField.text = self.profDisplayName.text
+        self.profGradYearField.text  = self.profGradYear.text
+        self.profClassesField.text = self.profClasses.text
+        
+        // make edit text field visible
+        self.profDisplayNameField.isHidden = false
+        self.profGradYearField.isHidden  = false
+        self.profClassesField.isHidden = false
+        self.saveData.isHidden = false
+        
+        // hide labels
+        self.profDisplayName.isHidden = true
+        self.profGradYear.isHidden  = true
+        self.profClasses.isHidden = true
+        
+    }
 
+    @IBAction func saveProfile(_ sender: UIButton) {
+        
+        // hide text fields
+        self.profDisplayNameField.isHidden = true
+        self.profGradYearField.isHidden  = true
+        self.profClassesField.isHidden = true
+        self.saveData.isHidden = true
+        
+        // make labels visible
+        self.profDisplayName.isHidden = false
+        self.profGradYear.isHidden  = false
+        self.profClasses.isHidden = false
+        
+        // update label field
+        self.profDisplayName.text = self.profDisplayNameField.text
+        self.profGradYear.text  = self.profGradYearField.text
+        self.profClasses.text = self.profClassesField.text
+        
+        // update database
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        let user = FIRAuth.auth()?.currentUser
+        let uid = user?.uid
+        ref.child("users").child(uid!).child("class_name").setValue(self.profClasses.text!)
+        ref.child("users").child(uid!).child("display_name").setValue(self.profDisplayName.text!)
+        ref.child("users").child(uid!).child("grad_year").setValue(self.profGradYear.text!)
+    }
+    
     @IBAction func openMenu(_ sender: Any) {
-        /*if menuShowing {
-            self.menuLeading.constant = -213 // extra 3 for the dropshadow
-            UIView.animate(withDuration: 0.3,
-                           animations: {
-                            self.view.layoutIfNeeded()
-            })
-        } else {
-            self.menuLeading.constant = 0
-            UIView.animate(withDuration: 0.3,
-                           animations: {
-                            self.view.layoutIfNeeded()
-                
-            })
-        }
-        menuShowing = !menuShowing*/
         print("open menu")
     }
 }
