@@ -10,12 +10,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Study App/CreateAccountViewController.swift"
-            timestampString = "513032058.420876"
+            timestampString = "513309526.300782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "createAccountAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Study App/CreateAccountViewController.swift"
+            timestampString = "513362663.469421"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "createAccountAction(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Study_App.CreateAccountViewController.(createAccountAction (__ObjC.UIButton) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Study App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kelseymeranda/Documents/Classes/Mobile%20Computing/Study%20App/Study_Buddies/Study%20App/CreateAccountViewController.swift"
+                  timestampString = "513309527.414508"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "444">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Study_App.CreateAccountViewController.(createAccountAction (__ObjC.UIButton) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Study App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kelseymeranda/Documents/Classes/Mobile%20Computing/Study%20App/Study_Buddies/Study%20App/CreateAccountViewController.swift"
+                  timestampString = "513309527.416504"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "831">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Study App/ProfileViewController.swift"
+            timestampString = "513370541.002233"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Study App/NewGroupViewController.swift"
+            timestampString = "513390707.332035"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "createNewGroup(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
