@@ -7,14 +7,168 @@
 //
 
 import Foundation
+import Firebase
 
 class GroupViewController : UIViewController {
     
+    @IBOutlet weak var groupTable: UITableView!
     @IBOutlet weak var openMenu: UIBarButtonItem!
+    @IBOutlet weak var addNewGroup: UIBarButtonItem!
+    
+    @IBOutlet weak var newGroupNameLabel: UILabel!
+    @IBOutlet weak var newGroupNameField: UITextField!
+    @IBOutlet weak var newGroupPrivacyLabel: UILabel!
+    @IBOutlet weak var newGroupPrivacyPicker: UISegmentedControl!
+    @IBOutlet weak var newGroupPrivacyDescription: UIButton!
+    @IBOutlet weak var newGroupMembersLabel: UILabel!
+    @IBOutlet weak var newGroupMember1: UITextField!
+    @IBOutlet weak var newGroupMember2: UITextField!
+    @IBOutlet weak var newGroupMember3: UITextField!
+    @IBOutlet weak var createNewGroup: UIButton!
+    @IBOutlet weak var newGroupCancel: UIButton!
+    
     
     override func viewDidLoad() {
         openMenu.target = self.revealViewController()
         openMenu.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        // make sure table of groups is visible
+        self.groupTable.isHidden = false
+        
+        // only have the new group fields when creating group
+        self.newGroupNameLabel.isHidden = true
+        self.newGroupNameField.isHidden = true
+        self.newGroupPrivacyLabel.isHidden = true
+        self.newGroupPrivacyPicker.isHidden = true
+        self.newGroupPrivacyDescription.isHidden = true
+        self.newGroupMembersLabel.isHidden = true
+        self.newGroupMember1.isHidden = true
+        self.newGroupMember2.isHidden = true
+        self.newGroupMember3.isHidden = true
+        self.createNewGroup.isHidden = true
+        self.newGroupCancel.isHidden = true
     }
+    
+    @IBAction func privacyExplanationAction(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Group Privacy Settings", message: "Public Groups can be seen by everyone.\n\nProtected Groups can be seen by the friends of members of the group.\n\nPrivate Groups can only be seen by members of the group.", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func createNewGroupAction(_ sender: UIBarButtonItem) {
+        // hide table of groups
+        self.groupTable.isHidden = true
+        
+        // make new group form visible
+        self.newGroupNameLabel.isHidden = false
+        self.newGroupNameField.isHidden = false
+        self.newGroupPrivacyLabel.isHidden = false
+        self.newGroupPrivacyPicker.isHidden = false
+        self.newGroupPrivacyDescription.isHidden = false
+        self.newGroupMembersLabel.isHidden = false
+        self.newGroupMember1.isHidden = false
+        self.newGroupMember2.isHidden = false
+        self.newGroupMember3.isHidden = false
+        self.createNewGroup.isHidden = false
+        self.newGroupCancel.isHidden = false
+        
+    }
+    
+    @IBAction func cancelNewGroupAction(_ sender: UIButton) {
+        // show table of groups
+        self.groupTable.isHidden = false
+        
+        // make new group form hidden
+        self.newGroupNameLabel.isHidden = true
+        self.newGroupNameField.isHidden = true
+        self.newGroupPrivacyLabel.isHidden = true
+        self.newGroupPrivacyPicker.isHidden = true
+        self.newGroupPrivacyDescription.isHidden = true
+        self.newGroupMembersLabel.isHidden = true
+        self.newGroupMember1.isHidden = true
+        self.newGroupMember2.isHidden = true
+        self.newGroupMember3.isHidden = true
+        self.createNewGroup.isHidden = true
+        self.newGroupCancel.isHidden = true
+    }
+    
+    @IBAction func addNewGroupAction(_ sender: UIButton) {
+        // add new group to Firebase
+        // groups must have a name
+        if self.newGroupNameField.text == "" {
+            let alertController = UIAlertController(title: "Oops!", message: "Please make sure to enter a group name before trying to make a group.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        // create dictionary of members
+        let ref = FIRDatabase.database().reference()
+        var mems : [String : Any] = [:]
+        // user is the first member of the groups
+        let user = FIRAuth.auth()?.currentUser
+        let userID = user?.uid
+        // get profile info
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let val = snapshot.value as? NSDictionary
+            let username = val?["display_name"] as? String ?? ""
+            print(username)
+            mems["1"] = username
+            // other members from text boxes
+            var i = 2
+            if (self.newGroupMember1.text != "") {
+                mems[String(i)] = self.newGroupMember1.text!
+                i += 1
+            }
+            if (self.newGroupMember2.text != "") {
+                mems[String(i)] = self.newGroupMember2.text!
+                i += 1
+            }
+            if (self.newGroupMember3.text != "") {
+                mems[String(i)] = self.newGroupMember3.text!
+            }
+            
+            // get privacy selection
+            let priv: String
+            switch self.newGroupPrivacyPicker.selectedSegmentIndex
+            {
+            case 0:
+                priv = "public"
+            case 1:
+                priv = "protected"
+            case 2:
+                priv = "private"
+            default:    // default to public group
+                priv = "public"
+            }
+            
+            // add group to database
+            let newGroup = ref.child("groups").childByAutoId()
+            // data to be entered into database
+            let value = [ "name":self.newGroupNameField.text!, "privacy":priv, "members":mems ] as [String : Any]
+            
+            newGroup.setValue(value)    // actually add to database
+            
+            // show table of groups
+            self.groupTable.isHidden = false
+            
+            // make new group form hidden
+            self.newGroupNameLabel.isHidden = true
+            self.newGroupNameField.isHidden = true
+            self.newGroupPrivacyLabel.isHidden = true
+            self.newGroupPrivacyPicker.isHidden = true
+            self.newGroupPrivacyDescription.isHidden = true
+            self.newGroupMembersLabel.isHidden = true
+            self.newGroupMember1.isHidden = true
+            self.newGroupMember2.isHidden = true
+            self.newGroupMember3.isHidden = true
+            self.createNewGroup.isHidden = true
+            self.newGroupCancel.isHidden = true
+        })
+    }
+    
 }
