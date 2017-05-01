@@ -21,7 +21,6 @@
 		58B184E51E8B7D8000435FBE /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B184E41E8B7D7F00435FBE /* GroupViewController.swift */; };
 		58B184E71E8B7DE300435FBE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B184E61E8B7DE300435FBE /* MapViewController.swift */; };
 		58B184E91E8B7E1F00435FBE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B184E81E8B7E1F00435FBE /* SettingsViewController.swift */; };
-		58E201C81E9974EC006A312F /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E201C71E9974EC006A312F /* NewGroupViewController.swift */; };
 		876DC0F82794D3B6F1850007 /* Pods_Study_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8675F6587C0ED3E6BC7CE345 /* Pods_Study_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +44,6 @@
 		58B184E41E8B7D7F00435FBE /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		58B184E61E8B7DE300435FBE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		58B184E81E8B7E1F00435FBE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		58E201C71E9974EC006A312F /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		8675F6587C0ED3E6BC7CE345 /* Pods_Study_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Study_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21A755503DB099CC4ED4D37 /* Pods-Study App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Study App/Pods-Study App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,7 +118,6 @@
 				5882B3DF1E70AB9B00D7C1C3 /* CreateAccountViewController.swift */,
 				5882B3C91E6FD77000D7C1C3 /* ViewController.swift */,
 				5882B3CB1E6FD77000D7C1C3 /* Main.storyboard */,
-				58E201C71E9974EC006A312F /* NewGroupViewController.swift */,
 				58B184E81E8B7E1F00435FBE /* SettingsViewController.swift */,
 				58B184E61E8B7DE300435FBE /* MapViewController.swift */,
 				58B184E41E8B7D7F00435FBE /* GroupViewController.swift */,
@@ -262,7 +259,6 @@
 				58B184E91E8B7E1F00435FBE /* SettingsViewController.swift in Sources */,
 				584B30F21E87338400BA2F14 /* SearchViewController.swift in Sources */,
 				58B184E71E8B7DE300435FBE /* MapViewController.swift in Sources */,
-				58E201C81E9974EC006A312F /* NewGroupViewController.swift in Sources */,
 				584B30EA1E871D7C00BA2F14 /* SWRevealViewController.m in Sources */,
 				5852E5CD1E735AEF0042CACE /* ProfileViewController.swift in Sources */,
 				5882B3C81E6FD77000D7C1C3 /* AppDelegate.swift in Sources */,
