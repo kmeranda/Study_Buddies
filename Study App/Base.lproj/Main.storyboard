@@ -729,25 +729,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NyK-Nb-Eb9">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyK-Nb-Eb9">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Map" id="aDP-TR-Mmy">
                                         <barButtonItem key="leftBarButtonItem" title="≡" id="UYS-Yu-iaw"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UrN-pX-8bs">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UrN-pX-8bs" firstAttribute="bottom" secondItem="Nmc-y2-Rpr" secondAttribute="top" id="MnU-tK-bis"/>
+                            <constraint firstItem="UrN-pX-8bs" firstAttribute="leading" secondItem="IAi-WP-6iF" secondAttribute="leading" id="P8c-D5-ORD"/>
+                            <constraint firstItem="UrN-pX-8bs" firstAttribute="trailing" secondItem="NyK-Nb-Eb9" secondAttribute="trailing" id="RND-OT-XYr"/>
+                            <constraint firstItem="NyK-Nb-Eb9" firstAttribute="top" secondItem="qcA-qk-RyW" secondAttribute="bottom" constant="8" id="YAO-co-sCX"/>
+                            <constraint firstAttribute="trailing" secondItem="UrN-pX-8bs" secondAttribute="trailing" id="eAA-Pf-MBL"/>
+                            <constraint firstItem="UrN-pX-8bs" firstAttribute="top" secondItem="NyK-Nb-Eb9" secondAttribute="bottom" id="eDG-DU-Bo0"/>
+                            <constraint firstItem="UrN-pX-8bs" firstAttribute="leading" secondItem="NyK-Nb-Eb9" secondAttribute="leading" id="vHA-tV-oSE"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="UrN-pX-8bs" id="ZDN-8u-7BY"/>
                         <outlet property="openMenu" destination="UYS-Yu-iaw" id="bUT-xq-Gob"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoD-3i-Dst" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3958" y="3618"/>
+            <point key="canvasLocation" x="3957.5999999999999" y="3617.5412293853078"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="SKc-NO-uG8">

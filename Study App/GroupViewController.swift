@@ -28,8 +28,7 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var createNewGroup: UIButton!
     @IBOutlet weak var newGroupCancel: UIButton!
     
-    //var TableArray = [String] ()
-    let TableArray = ["Search", "Profile", "Groups", "Map", "Settings", "Sign Out"]
+    var TableArray = [String] ()
     
     override func viewDidLoad() {
         openMenu.target = self.revealViewController()
@@ -52,7 +51,7 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         self.createNewGroup.isHidden = true
         self.newGroupCancel.isHidden = true
         
-        //TableArray = ["Search", "Profile", "Groups", "Map", "Settings", "Sign Out"]
+        TableArray = ["Search", "Profile", "Groups", "Map", "Settings", "Sign Out"]
     }
     
     func numberOfSections( in tableview: UITableView) -> Int {
@@ -60,36 +59,14 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10//TableArray.count
+        return TableArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell() //tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
-        cell.textLabel?.text = "Test"//TableArray[indexPath.row]
+        cell.textLabel?.text = TableArray[indexPath.row]
         return cell
     }
-    
-    /*override func viewDidLoad() {
-        openMenu.target = self.revealViewController()
-        openMenu.action = #selector(SWRevealViewController.revealToggle(_:))
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
-        // make sure table of groups is visible
-        self.groupTable.isHidden = false
-        
-        // only have the new group fields when creating group
-        self.newGroupNameLabel.isHidden = true
-        self.newGroupNameField.isHidden = true
-        self.newGroupPrivacyLabel.isHidden = true
-        self.newGroupPrivacyPicker.isHidden = true
-        self.newGroupPrivacyDescription.isHidden = true
-        self.newGroupMembersLabel.isHidden = true
-        self.newGroupMember1.isHidden = true
-        self.newGroupMember2.isHidden = true
-        self.newGroupMember3.isHidden = true
-        self.createNewGroup.isHidden = true
-        self.newGroupCancel.isHidden = true
-    }*/
     
     @IBAction func privacyExplanationAction(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Group Privacy Settings", message: "Public Groups can be seen by everyone.\n\nProtected Groups can be seen by the friends of members of the group.\n\nPrivate Groups can only be seen by members of the group.", preferredStyle: .alert)
