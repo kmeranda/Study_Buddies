@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		581023B81EB86A97003F205B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581023B71EB86A97003F205B /* Group.swift */; };
 		584B30EA1E871D7C00BA2F14 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584B30E91E871D7C00BA2F14 /* SWRevealViewController.m */; };
 		584B30F01E8731F700BA2F14 /* BackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584B30EF1E8731F700BA2F14 /* BackTableViewController.swift */; };
 		584B30F21E87338400BA2F14 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584B30F11E87338400BA2F14 /* SearchViewController.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		0AFE18EF444D5E6179C42004 /* Pods-Study App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Study App/Pods-Study App.debug.xcconfig"; sourceTree = "<group>"; };
+		581023B71EB86A97003F205B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		584B30E71E871D7B00BA2F14 /* Study App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Study App-Bridging-Header.h"; sourceTree = "<group>"; };
 		584B30E81E871D7C00BA2F14 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		584B30E91E871D7C00BA2F14 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		5882B3BB1E6FD77000D7C1C3 = {
 			isa = PBXGroup;
 			children = (
+				581023B71EB86A97003F205B /* Group.swift */,
 				5882B3C61E6FD77000D7C1C3 /* Study App */,
 				5882B3C51E6FD77000D7C1C3 /* Products */,
 				1E25D5284F9771B9D9DD7876 /* Pods */,
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				581023B81EB86A97003F205B /* Group.swift in Sources */,
 				58B184E51E8B7D8000435FBE /* GroupViewController.swift in Sources */,
 				5882B3E01E70AB9B00D7C1C3 /* CreateAccountViewController.swift in Sources */,
 				5882B3CA1E6FD77000D7C1C3 /* ViewController.swift in Sources */,

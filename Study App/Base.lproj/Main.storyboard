@@ -734,6 +734,11 @@
                                 <items>
                                     <navigationItem title="Map" id="aDP-TR-Mmy">
                                         <barButtonItem key="leftBarButtonItem" title="≡" id="UYS-Yu-iaw"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LMq-Y0-aBd">
+                                            <connections>
+                                                <action selector="createNewSess:" destination="waf-kb-r03" id="2Md-g9-GqM"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -754,6 +759,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="UrN-pX-8bs" id="ZDN-8u-7BY"/>
+                        <outlet property="newSess" destination="LMq-Y0-aBd" id="6gw-7O-DFg"/>
                         <outlet property="openMenu" destination="UYS-Yu-iaw" id="bUT-xq-Gob"/>
                     </connections>
                 </viewController>

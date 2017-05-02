@@ -15,6 +15,7 @@ class MapViewController : UIViewController, MKMapViewDelegate, CLLocationManager
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var openMenu: UIBarButtonItem!
+    @IBOutlet weak var newSess: UIBarButtonItem!
     
     let locationManager = CLLocationManager()
     
@@ -48,20 +49,25 @@ class MapViewController : UIViewController, MKMapViewDelegate, CLLocationManager
         ref = FIRDatabase.database().reference()
         
         ref.child("sessions").observe(.childAdded, with: { (snapshot) -> Void in
-        //ref.child("sessions").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let val = snapshot.value as? NSDictionary
-            print("purpose: " + String(describing: val?["purpose"]))
-            //let username = value?["display_name"] as? String ?? ""
-            //for sess in snapshot.children {
-                //let sess_dict = snapshot.childSnapshotForPath((sess).key).value
-                //print(sess)
-            //}
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: val?["latitude"]! as! CLLocationDegrees, longitude: val?["longitude"]! as! CLLocationDegrees)
-            annotation.title = val?["group"]! as! String
-            annotation.subtitle = val?["purpose"]! as! String
-            self.mapView.addAnnotation(annotation)
+            // Delete old sessions from database
+            let day = 24*60*60.0
+            let currentTime = NSDate().timeIntervalSince1970
+            let sessTime = val?["time"]! as! Double
+            if (currentTime - sessTime) > day {
+                snapshot.ref.removeValue()
+            } else {
+            
+            
+                //print("purpose: " + String(describing: val?["purpose"]))
+                // Add sessions to map
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: val?["latitude"]! as! CLLocationDegrees, longitude: val?["longitude"]! as! CLLocationDegrees)
+                annotation.title = val?["group"]! as? String ?? ""
+                annotation.subtitle = val?["purpose"]! as? String ?? ""
+                self.mapView.addAnnotation(annotation)
+            }
 
             
         }) { (error) in
@@ -87,13 +93,8 @@ class MapViewController : UIViewController, MKMapViewDelegate, CLLocationManager
         print("ERRORS: "+error.localizedDescription)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
+    @IBAction func createNewSess(_ sender: UIBarButtonItem) {
+        
+    }
     
 }

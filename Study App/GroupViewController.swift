@@ -28,7 +28,11 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var createNewGroup: UIButton!
     @IBOutlet weak var newGroupCancel: UIButton!
     
-    var TableArray = [String] ()
+    var TableArray = [Group] ()
+    var ref : FIRDatabaseReference!
+    var refHandle: UInt!
+    
+    let cellID = "cellID"   // might not need
     
     override func viewDidLoad() {
         openMenu.target = self.revealViewController()
@@ -51,7 +55,11 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         self.createNewGroup.isHidden = true
         self.newGroupCancel.isHidden = true
         
-        TableArray = ["Search", "Profile", "Groups", "Map", "Settings", "Sign Out"]
+        // Firebase database
+        ref = FIRDatabase.database().reference()
+        fetchGroups()
+        
+        //TableArray = ["Search", "Profile", "Groups", "Map", "Settings", "Sign Out"]
     }
     
     func numberOfSections( in tableview: UITableView) -> Int {
@@ -64,8 +72,30 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell() //tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
-        cell.textLabel?.text = TableArray[indexPath.row]
+        cell.textLabel?.text = TableArray[indexPath.row].name
         return cell
+    }
+    
+    func fetchGroups() {
+        refHandle = ref.child("groups").observe(.childAdded, with: {(snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                print(dictionary["name"] ?? "")
+                print("\n\n\n" + String(describing: dictionary))
+                let group = Group()
+                print(group.name)
+                group.name = dictionary["name"] as? String
+                group.privacy = dictionary["privacy"] as? String
+                group.members = dictionary["members"] as! [String]
+                //group.setValuesForKeys(dictionary)
+ 
+                self.TableArray.append(group)
+                DispatchQueue.main.async(execute: {
+                    self.groupTable.reloadData()
+                })
+            }
+        }, withCancel: { (error) in
+            print(error)
+        })
     }
     
     @IBAction func privacyExplanationAction(_ sender: UIButton) {
