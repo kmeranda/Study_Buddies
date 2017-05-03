@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import UIKit
+import CoreLocation
 
 class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -421,7 +422,65 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         self.groupDetailMember3.isHidden = true
         self.startSessionButton.isHidden = true
         
-        
     }
     
+    @IBAction func createSessionAction(_ sender: UIButton) {
+        let locManager = CLLocationManager()
+        var currentLocation: CLLocation!
+        locManager.requestWhenInUseAuthorization()
+        var latitude = 41.6
+        var longitude = -86.5
+        
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            currentLocation = locManager.location
+            latitude = currentLocation.coordinate.latitude
+            longitude = currentLocation.coordinate.longitude
+            print(currentLocation.coordinate.latitude)
+            print(currentLocation.coordinate.longitude)
+        }
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Create Study Session", message: "What are you studying for?", preferredStyle: .alert)
+        
+        print("1")
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+        
+        print("2")
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            print("Text field: \(textField?.text! ?? "")")
+            
+            
+            print("before session created")
+            // create session
+            
+            
+            let ref = FIRDatabase.database().reference()
+            
+            let group = self.groupDetailName.text!
+            let purpose = textField?.text! ?? ""
+            let time = NSDate().timeIntervalSince1970
+            
+            // add session to database
+            let newGroup = ref.child("sessions").childByAutoId()
+            // data to be entered into database
+            let value = [ "group": group, "purpose": purpose, "latitude": latitude, "longitude": longitude, "time": time ] as [String : Any]
+            
+            newGroup.setValue(value)    // actually add to database
+            
+            print("3")
+            
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+        print("4")
+        
+    }
 }

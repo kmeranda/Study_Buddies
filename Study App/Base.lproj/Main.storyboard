@@ -726,6 +726,9 @@
                                     <constraint firstAttribute="height" constant="50" id="Cyr-Cm-T7Z"/>
                                 </constraints>
                                 <state key="normal" title="Start Study Session!"/>
+                                <connections>
+                                    <action selector="createSessionAction:" destination="lfT-o4-dQM" eventType="touchUpInside" id="Vgp-EN-Znv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
