@@ -70,14 +70,55 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         return TableArray.count
     }
     
+    // populate cells of table
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell() //tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
         cell.textLabel?.text = TableArray[indexPath.row].name
         return cell
     }
     
+    // delete group
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            // get user auth
+            let user = FIRAuth.auth()?.currentUser
+            let userID = user?.uid
+            print(String(describing: userID!))
+            
+            // get user info
+            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["display_name"] ?? ""
+                let groupId = self.TableArray[indexPath.row].id ?? ""
+                let num = self.TableArray[indexPath.row].members.index(of: String(describing: name))
+                
+                let len = self.TableArray[indexPath.row].members.count - 1
+                print(String(describing: self.TableArray[indexPath.row].members))
+                print("length: " + String(len))
+                self.ref.child("groups").child(groupId).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
+                    let x = snapshot.value as? [String]
+                    print("\n" + String(describing: snapshot.ref))
+                    //let x_val = x?[String(len-1)] ?? ""
+                    print((x?[len]) ?? "")
+                    
+                    self.ref.child("groups").child(groupId).child("members").child(String(describing: num!)).setValue(x?[len] ?? "")
+                    self.ref.child("groups").child(groupId).child("members").child(String(len)).removeValue()
+                })
+                
+                
+                
+                
+                self.TableArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                
+            })
+        
+        }
+    }
+    
+    // pull up details on group
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // pull up details on group
         print(String(describing: TableArray[indexPath.row].members))
     }
     
@@ -95,7 +136,7 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
             // get group info
             self.refHandle = self.ref.child("groups").observe(.childAdded, with: {(snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject] {
-                    if (dictionary["members"]?.contains(value?["display_name"]))! {
+                    if (dictionary["members"]?.contains(value?["display_name"] ?? ""))! {
                         print(dictionary["name"] ?? "")
                         print("\n\n\n" + String(describing: dictionary))
                         
