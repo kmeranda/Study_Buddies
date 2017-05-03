@@ -55,18 +55,19 @@ class MapViewController : UIViewController, MKMapViewDelegate, CLLocationManager
             let day = 24*60*60.0
             let currentTime = NSDate().timeIntervalSince1970
             let sessTime = val?["time"]! as! Double
-            if (currentTime - sessTime) > day {
+            if (currentTime - sessTime) > day { // older than 24 hours
+                
                 snapshot.ref.removeValue()
+                
             } else {
-            
-            
-                //print("purpose: " + String(describing: val?["purpose"]))
+                
                 // Add sessions to map
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = CLLocationCoordinate2D(latitude: val?["latitude"]! as! CLLocationDegrees, longitude: val?["longitude"]! as! CLLocationDegrees)
                 annotation.title = val?["group"]! as? String ?? ""
                 annotation.subtitle = val?["purpose"]! as? String ?? ""
                 self.mapView.addAnnotation(annotation)
+                
             }
 
             
