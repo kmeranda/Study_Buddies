@@ -304,7 +304,13 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         self.groupDetailMember2.isHidden = true
         self.groupDetailMember3.isHidden = true
         self.startSessionButton.isHidden = true
-        
+
+        // clear text fields when text field
+        self.newGroupNameField.text = ""
+        self.newGroupPrivacyPicker.selectedSegmentIndex = 0
+        self.newGroupMember1.text = ""
+        self.newGroupMember2.text = ""
+        self.newGroupMember3.text = ""
         
     }
     
@@ -395,7 +401,6 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
             self.startSessionButton.isHidden = true
             
             // clear text fields when text field
-            
             self.newGroupNameField.text = ""
             self.newGroupPrivacyPicker.selectedSegmentIndex = 0
             self.newGroupMember1.text = ""

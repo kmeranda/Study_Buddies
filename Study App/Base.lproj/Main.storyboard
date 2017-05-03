@@ -386,6 +386,8 @@
                     </view>
                     <connections>
                         <outlet property="openMenu" destination="Gri-Aj-uOQ" id="yY9-fk-Rpu"/>
+                        <outlet property="searchTable" destination="qRI-I9-u9v" id="nN0-X2-8ne"/>
+                        <outlet property="searchbar" destination="0Co-Uh-aEN" id="WUj-aI-pDC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiY-sm-LJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
