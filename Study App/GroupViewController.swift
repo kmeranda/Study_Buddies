@@ -28,6 +28,18 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var createNewGroup: UIButton!
     @IBOutlet weak var newGroupCancel: UIButton!
     
+    // group detail view
+    @IBOutlet weak var groupDetailBack: UIButton!
+    @IBOutlet weak var groupDetailName: UILabel!
+    @IBOutlet weak var groupDetailPrivacy: UILabel!
+    @IBOutlet weak var groupDetailMemberLabel: UILabel!
+    @IBOutlet weak var groupDetailMember0: UILabel!
+    @IBOutlet weak var groupDetailMember1: UILabel!
+    @IBOutlet weak var groupDetailMember2: UILabel!
+    @IBOutlet weak var groupDetailMember3: UILabel!
+    @IBOutlet weak var startSessionButton: UIButton!
+    
+    
     var TableArray = [Group] ()
     var ref : FIRDatabaseReference!
     var refHandle: UInt!
@@ -54,6 +66,17 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         self.newGroupMember3.isHidden = true
         self.createNewGroup.isHidden = true
         self.newGroupCancel.isHidden = true
+        
+        // hide group detail view
+        self.groupDetailBack.isHidden = true
+        self.groupDetailName.isHidden = true
+        self.groupDetailPrivacy.isHidden = true
+        self.groupDetailMemberLabel.isHidden = true
+        self.groupDetailMember0.isHidden = true
+        self.groupDetailMember1.isHidden = true
+        self.groupDetailMember2.isHidden = true
+        self.groupDetailMember3.isHidden = true
+        self.startSessionButton.isHidden = true
         
         // Firebase database
         ref = FIRDatabase.database().reference()
@@ -121,13 +144,62 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
                 tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                 
             })
-        
+            
         }
     }
     
     // pull up details on group
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(String(describing: TableArray[indexPath.row].members))
+        
+        // show group detail view
+        self.groupDetailBack.isHidden = false
+        self.groupDetailName.isHidden = false
+        self.groupDetailPrivacy.isHidden = false
+        self.groupDetailMemberLabel.isHidden = false
+        self.groupDetailMember0.isHidden = false
+        self.groupDetailMember1.isHidden = false
+        self.groupDetailMember2.isHidden = false
+        self.groupDetailMember3.isHidden = false
+        self.startSessionButton.isHidden = false
+        
+        // only have the new group fields when creating group
+        self.newGroupNameLabel.isHidden = true
+        self.newGroupNameField.isHidden = true
+        self.newGroupPrivacyLabel.isHidden = true
+        self.newGroupPrivacyPicker.isHidden = true
+        self.newGroupPrivacyDescription.isHidden = true
+        self.newGroupMembersLabel.isHidden = true
+        self.newGroupMember1.isHidden = true
+        self.newGroupMember2.isHidden = true
+        self.newGroupMember3.isHidden = true
+        self.createNewGroup.isHidden = true
+        self.newGroupCancel.isHidden = true
+        
+        // hide table
+        self.groupTable.isHidden = true
+        
+        // fill in group info
+        self.groupDetailName.text = self.TableArray[indexPath.row].name ?? ""
+        self.groupDetailPrivacy.text = self.TableArray[indexPath.row].privacy ?? ""
+        let len = TableArray[indexPath.row].members.count
+        print(len)
+        self.groupDetailMember0.text = ""
+        self.groupDetailMember1.text = ""
+        self.groupDetailMember2.text = ""
+        self.groupDetailMember3.text = ""
+        if len > 0 {
+            self.groupDetailMember0.text = self.TableArray[indexPath.row].members[0]
+        }
+        if len > 1 {
+            self.groupDetailMember1.text = self.TableArray[indexPath.row].members[1]
+        }
+        if len > 2 {
+            self.groupDetailMember2.text = self.TableArray[indexPath.row].members[2]
+        }
+        if len > 3 {
+            self.groupDetailMember3.text = self.TableArray[indexPath.row].members[3]
+        }
     }
     
     func fetchGroups() {
@@ -191,6 +263,17 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         self.createNewGroup.isHidden = false
         self.newGroupCancel.isHidden = false
         
+        // hide group detail view
+        self.groupDetailBack.isHidden = true
+        self.groupDetailName.isHidden = true
+        self.groupDetailPrivacy.isHidden = true
+        self.groupDetailMemberLabel.isHidden = true
+        self.groupDetailMember0.isHidden = true
+        self.groupDetailMember1.isHidden = true
+        self.groupDetailMember2.isHidden = true
+        self.groupDetailMember3.isHidden = true
+        self.startSessionButton.isHidden = true
+        
     }
     
     @IBAction func cancelNewGroupAction(_ sender: UIButton) {
@@ -209,6 +292,17 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         self.newGroupMember3.isHidden = true
         self.createNewGroup.isHidden = true
         self.newGroupCancel.isHidden = true
+        
+        // hide group detail view
+        self.groupDetailBack.isHidden = true
+        self.groupDetailName.isHidden = true
+        self.groupDetailPrivacy.isHidden = true
+        self.groupDetailMemberLabel.isHidden = true
+        self.groupDetailMember0.isHidden = true
+        self.groupDetailMember1.isHidden = true
+        self.groupDetailMember2.isHidden = true
+        self.groupDetailMember3.isHidden = true
+        self.startSessionButton.isHidden = true
     }
     
     @IBAction func addNewGroupAction(_ sender: UIButton) {
@@ -285,7 +379,49 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
             self.newGroupMember3.isHidden = true
             self.createNewGroup.isHidden = true
             self.newGroupCancel.isHidden = true
+            
+            // hide group detail view
+            self.groupDetailBack.isHidden = true
+            self.groupDetailName.isHidden = true
+            self.groupDetailPrivacy.isHidden = true
+            self.groupDetailMemberLabel.isHidden = true
+            self.groupDetailMember0.isHidden = true
+            self.groupDetailMember1.isHidden = true
+            self.groupDetailMember2.isHidden = true
+            self.groupDetailMember3.isHidden = true
+            self.startSessionButton.isHidden = true
         })
+    }
+    
+    @IBAction func groupDetailBackAction(_ sender: UIButton) {
+        // make sure table of groups is visible
+        self.groupTable.isHidden = false
+        
+        // only have the new group fields when creating group
+        self.newGroupNameLabel.isHidden = true
+        self.newGroupNameField.isHidden = true
+        self.newGroupPrivacyLabel.isHidden = true
+        self.newGroupPrivacyPicker.isHidden = true
+        self.newGroupPrivacyDescription.isHidden = true
+        self.newGroupMembersLabel.isHidden = true
+        self.newGroupMember1.isHidden = true
+        self.newGroupMember2.isHidden = true
+        self.newGroupMember3.isHidden = true
+        self.createNewGroup.isHidden = true
+        self.newGroupCancel.isHidden = true
+        
+        // hide group detail view
+        self.groupDetailBack.isHidden = true
+        self.groupDetailName.isHidden = true
+        self.groupDetailPrivacy.isHidden = true
+        self.groupDetailMemberLabel.isHidden = true
+        self.groupDetailMember0.isHidden = true
+        self.groupDetailMember1.isHidden = true
+        self.groupDetailMember2.isHidden = true
+        self.groupDetailMember3.isHidden = true
+        self.startSessionButton.isHidden = true
+        
+        
     }
     
 }
