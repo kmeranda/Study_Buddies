@@ -132,7 +132,7 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
                         self.ref.child("groups").child(groupId).child("members").child(String(len)).removeValue()
                     })
                     
-                    self.ref.child("groups").child(groupId).removeValue()
+                    //self.ref.child("groups").child(groupId).removeValue()
                     
                 } else {
                     
