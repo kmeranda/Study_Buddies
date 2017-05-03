@@ -76,25 +76,45 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // pull up details on group
+        print(String(describing: TableArray[indexPath.row].members))
+    }
+    
     func fetchGroups() {
-        refHandle = ref.child("groups").observe(.childAdded, with: {(snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                print(dictionary["name"] ?? "")
-                print("\n\n\n" + String(describing: dictionary))
-                let group = Group()
-                print(group.name)
-                group.name = dictionary["name"] as? String
-                group.privacy = dictionary["privacy"] as? String
-                group.members = dictionary["members"] as! [String]
-                //group.setValuesForKeys(dictionary)
- 
-                self.TableArray.append(group)
-                DispatchQueue.main.async(execute: {
-                    self.groupTable.reloadData()
-                })
-            }
-        }, withCancel: { (error) in
-            print(error)
+        // get user auth
+        let user = FIRAuth.auth()?.currentUser
+        let userID = user?.uid
+        print(String(describing: userID!))
+        
+        // get user info
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            
+            // get group info
+            self.refHandle = self.ref.child("groups").observe(.childAdded, with: {(snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    if (dictionary["members"]?.contains(value?["display_name"]))! {
+                        print(dictionary["name"] ?? "")
+                        print("\n\n\n" + String(describing: dictionary))
+                        
+                        let group = Group()
+                        group.id = snapshot.key
+                        group.name = dictionary["name"] as? String
+                        group.privacy = dictionary["privacy"] as? String
+                        group.members = dictionary["members"] as! [String]
+                        //group.setValuesForKeys(dictionary)
+                        
+                        self.TableArray.append(group)
+                    }
+                    DispatchQueue.main.async(execute: {
+                        self.groupTable.reloadData()
+                    })
+                }
+            }, withCancel: { (error) in
+                print(error)
+            })
         })
     }
     
@@ -165,9 +185,9 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
             let val = snapshot.value as? NSDictionary
             let username = val?["display_name"] as? String ?? ""
             print(username)
-            mems["1"] = username
+            mems["0"] = username
             // other members from text boxes
-            var i = 2
+            var i = 1
             if (self.newGroupMember1.text != "") {
                 mems[String(i)] = self.newGroupMember1.text!
                 i += 1

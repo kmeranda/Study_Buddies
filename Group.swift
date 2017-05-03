@@ -10,7 +10,7 @@ import UIKit
 
 class Group:NSObject {
     
-    //var id: String?
+    var id: String?
     var name: String?
     var members = [String]()
     var privacy: String?
