@@ -94,19 +94,27 @@ class GroupViewController : UIViewController, UITableViewDelegate, UITableViewDa
                 let num = self.TableArray[indexPath.row].members.index(of: String(describing: name))
                 
                 let len = self.TableArray[indexPath.row].members.count - 1
-                print(String(describing: self.TableArray[indexPath.row].members))
-                print("length: " + String(len))
-                self.ref.child("groups").child(groupId).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
-                    let x = snapshot.value as? [String]
-                    print("\n" + String(describing: snapshot.ref))
-                    //let x_val = x?[String(len-1)] ?? ""
-                    print((x?[len]) ?? "")
+                if len > 0 {
                     
-                    self.ref.child("groups").child(groupId).child("members").child(String(describing: num!)).setValue(x?[len] ?? "")
-                    self.ref.child("groups").child(groupId).child("members").child(String(len)).removeValue()
-                })
-                
-                
+                    print(String(describing: self.TableArray[indexPath.row].members))
+                    print("length: " + String(len))
+                    self.ref.child("groups").child(groupId).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
+                        let x = snapshot.value as? [String]
+                        print("\n" + String(describing: snapshot.ref))
+                        //let x_val = x?[String(len-1)] ?? ""
+                        print((x?[len]) ?? "")
+                        
+                        self.ref.child("groups").child(groupId).child("members").child(String(describing: num!)).setValue(x?[len] ?? "")
+                        self.ref.child("groups").child(groupId).child("members").child(String(len)).removeValue()
+                    })
+                    
+                    self.ref.child("groups").child(groupId).removeValue()
+                    
+                } else {
+                    
+                    self.ref.child("groups").child(groupId).removeValue()
+                    
+                }
                 
                 
                 self.TableArray.remove(at: indexPath.row)
