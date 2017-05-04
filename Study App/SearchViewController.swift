@@ -7,16 +7,22 @@
 //
 
 import Foundation
+import Firebase
 
 class SearchViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var openMenu: UIBarButtonItem!
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var searchbar: UISearchBar!
+    @IBOutlet weak var searchPicker: UISegmentedControl!
     
-    
+    // for getting data for table
+    var ref : FIRDatabaseReference!
+    var refHandle: UInt!
+    let cellID = "cellID"   // might not need
+    // for searchy things
     var searchActive : Bool = false
-    var data = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
+    var data = [String]() //["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
     var filtered:[String] = []
     
     override func viewDidLoad() {
@@ -30,6 +36,10 @@ class SearchViewController : UIViewController, UITableViewDataSource, UITableVie
         self.searchTable.delegate = self
         self.searchTable.dataSource = self
         self.searchbar.delegate = self
+        
+        // get data from Firebase
+        //fetchData()
+        data = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
         
     }
     
@@ -69,6 +79,44 @@ class SearchViewController : UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    func fetchData() {
+        // get user auth
+        let user = FIRAuth.auth()?.currentUser
+        let userID = user?.uid
+        print(String(describing: userID!))
+        
+        // get user info
+        ref.child("users").child("hFoX1wA9IMexyAzOJDfegsZC4ia2").observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            
+            // get group info
+            self.refHandle = self.ref.child("groups").observe(.childAdded, with: {(snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    if (dictionary["members"]?.contains(value?["display_name"] ?? ""))! {
+                        print(dictionary["name"] ?? "")
+                        print("\n\n\n" + String(describing: dictionary))
+                        
+                        let group = Group()
+                        group.id = snapshot.key
+                        group.name = dictionary["name"] as? String
+                        group.privacy = dictionary["privacy"] as? String
+                        group.members = dictionary["members"] as! [String]
+                        //group.setValuesForKeys(dictionary)
+                        
+                        print(String(describing: self.data))
+                        self.data.append(group.name!)
+                    }
+                    DispatchQueue.main.async(execute: {
+                        self.searchTable.reloadData()
+                    })
+                }
+            }, withCancel: { (error) in
+                print(error)
+            })
+        })
+
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

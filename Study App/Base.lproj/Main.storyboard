@@ -386,6 +386,7 @@
                     </view>
                     <connections>
                         <outlet property="openMenu" destination="Gri-Aj-uOQ" id="yY9-fk-Rpu"/>
+                        <outlet property="searchPicker" destination="edn-Gp-4Bx" id="kAd-fl-JxZ"/>
                         <outlet property="searchTable" destination="qRI-I9-u9v" id="nN0-X2-8ne"/>
                         <outlet property="searchbar" destination="0Co-Uh-aEN" id="WUj-aI-pDC"/>
                     </connections>
